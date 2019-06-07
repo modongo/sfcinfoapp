@@ -1,8 +1,8 @@
 package dao;
 
-import models.Department;
 import models.News;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface NewsDao {
@@ -11,16 +11,17 @@ public interface NewsDao {
 
     //CREATE
 
-    void add (News news); //****
+    void add(News news); //****
 
     //READ
-    Department findById(int id);
-    List<News> getAllNewssByDepartment(int departmentId);
+    News findById(int id);
+    void getAllNewssByDepartment(int departmentId);
 
     //UPDATE
-    void update(int id, String name);
+    //deptid | newsitems | createdate
+    void update(int deptid, String newsitems, Timestamp createdate);
 
     //DELETE
     void deleteById(int id);
-    void clearAllDepartments();
+    void clearAllNews();
 }

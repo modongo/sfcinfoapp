@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import dao.Sql2oNewsDao;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -37,6 +39,7 @@ public class App {
         staticFileLocation("/public");
         Sql2oStaffDao staffDao = new Sql2oStaffDao(DB.sql2o);
         Sql2oDepartmentDao departmentDao = new Sql2oDepartmentDao(DB.sql2o);
+        Sql2oNewsDao newsDao = new Sql2oNewsDao(DB.sql2o);
         Gson gson = new Gson();
 
 
@@ -51,17 +54,17 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/alldepartments", "application/json", (req, res) -> {
+        get("api/list-departments", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(departmentDao.getAll());
         });
 
-        get("/allstaff", "application/json", (req, res) -> {
+        get("api/list-staff", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(staffDao.getAll());
         });
 
-        post("/department/new", "application/json", (req, res) -> {
+        post("api/add-department", "application/json", (req, res) -> {
             Department newDept = gson.fromJson(req.body(), Department.class);
 
             if(newDept.getDeptname() != null){
@@ -71,22 +74,22 @@ public class App {
                 res.status(201);
                 return gson.toJson(newDept);
         });
-        post("/staff/new", "application/json", (req, res) -> {
+        post("api/add-staff", "application/json", (req, res) -> {
             Staff newStaff = gson.fromJson(req.body(), Staff.class);
             if(newStaff.getEkno() != null){
-                throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists!",newStaff.getEkno()));
+                throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists! ",newStaff.getEkno()));
             }else
             staffDao.add(newStaff);
             res.status(201);
             return gson.toJson(newStaff);
         });
 
-        post("/news/new", "application/json", (req, res) -> {
+        post("api/news/new", "application/json", (req, res) -> {
             News newItem = gson.fromJson(req.body(), News.class);
             if(newItem.getNewsitems() != null){
                 throw new ApiException(801,String.format("Error, News item:\"%s\"  already exists!",newItem.getNewsitems()));
             }else
-                new.add(newItem);
+            newsDao.add(newItem);
             res.status(201);
             return gson.toJson(newItem);
         });

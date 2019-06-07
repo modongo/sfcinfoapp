@@ -18,8 +18,9 @@ is already entered the app will throw an error indicating that the there is alre
  ## API Technical Documentation / Specifications
 | Path                                     |  Operation | Description   |
  | ---------------------------------------------- | ------ | --------- |
- | http://localhost:4567/alldepartments                       | GET  | List all departments|
- |/allstaff| GET| List all staff|
+ | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments|
+ |https://sfcinfoapp.herokuapp.com/api/api/list-staff| GET| List all staff|
+ | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    
  
 ## Setup/Installation Requirements
 
