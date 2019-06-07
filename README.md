@@ -17,7 +17,7 @@ This web app REST API for querying and retrieving scoped news and information.
 | Path                                     |  Operation | Description   |
  | ---------------------------------------------- | ------ | --------- |
  | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments|
- |https://sfcinfoapp.herokuapp.com/api/api/list-staff| GET| List all staff|
+ |https://sfcinfoapp.herokuapp.com/api/list-staff| GET| List all staff|
  | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    
   | https://sfcinfoapp.herokuapp.com/api/api/add-news |POST| Add News|    
 
