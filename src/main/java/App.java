@@ -84,7 +84,7 @@ public class App {
             return gson.toJson(newStaff);
         });
 
-        post("api/news/new", "application/json", (req, res) -> {
+        post("api/add-news", "application/json", (req, res) -> {
             News newItem = gson.fromJson(req.body(), News.class);
             if(newItem.getNewsitems() != null){
                 throw new ApiException(801,String.format("Error, News item:\"%s\"  already exists!",newItem.getNewsitems()));

@@ -1,11 +1,9 @@
 # Organizational News and Sections API
 
-#### By **Michael Odongo, May 26, 2019**
+#### By **Michael Odongo, June 6th, 2019**
 
 ## Description
-This web app enables a user to manage staff within a division e.g technology division. The use can create a department,  create section under it. Incase a user enters what 
-is already entered the app will throw an error indicating that the there is already an exiting record with the same name
-
+This web app REST API for querying and retrieving scoped news and information. 
 
 ## Behavior of the programm
 
@@ -21,6 +19,8 @@ is already entered the app will throw an error indicating that the there is alre
  | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments|
  |https://sfcinfoapp.herokuapp.com/api/api/list-staff| GET| List all staff|
  | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    
+  | https://sfcinfoapp.herokuapp.com/api/api/add-news |POST| Add News|    
+
  
 ## Setup/Installation Requirements
 
