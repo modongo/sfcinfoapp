@@ -26,13 +26,9 @@ public class Sql2oDepartmentDao implements DepartmentDao {
 //        String sql = "INSERT INTO categories (name) VALUES (:name)"; ****
         String sql = "INSERT INTO departments (deptname,description) VALUES (:deptname, :description)";
         try(Connection con = DB.sql2o.open()){
-            int id = (int) con.createQuery(sql, true)
-                    //.bind(category)*****
+            con.createQuery(sql)
                     .bind(department)
-                    .executeUpdate()
-                    .getKey();
-            //category.setId(id);****
-            department.setId(id);
+                    .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }

@@ -12,6 +12,7 @@ import dao.DB;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oStaffDao;
 import models.Department;
+import exceptions.ApiException;
 import models.News;
 import models.Staff;
 //import org.sql2o.Sql2o;
@@ -54,10 +55,55 @@ public class App {
             res.type("application/json");
             return gson.toJson(departmentDao.getAll());
         });
+
         get("/allstaff", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(staffDao.getAll());
         });
 
+        post("/department/new", "application/json", (req, res) -> {
+            Department newDept = gson.fromJson(req.body(), Department.class);
+
+            if(newDept.getDeptname() != null){
+                throw new ApiException(801, String.format("Error, Department:\"%s\"  already exists!", newDept.getDeptname()));
+            } else
+                departmentDao.add(newDept);
+                res.status(201);
+                return gson.toJson(newDept);
+        });
+        post("/staff/new", "application/json", (req, res) -> {
+            Staff newStaff = gson.fromJson(req.body(), Staff.class);
+            if(newStaff.getEkno() != null){
+                throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists!",newStaff.getEkno()));
+            }else
+            staffDao.add(newStaff);
+            res.status(201);
+            return gson.toJson(newStaff);
+        });
+
+        post("/news/new", "application/json", (req, res) -> {
+            News newItem = gson.fromJson(req.body(), News.class);
+            if(newItem.getNewsitems() != null){
+                throw new ApiException(801,String.format("Error, News item:\"%s\"  already exists!",newItem.getNewsitems()));
+            }else
+                new.add(newItem);
+            res.status(201);
+            return gson.toJson(newItem);
+        });
+        //FILTERS
+        exception(ApiException.class, (exception, req, res) -> {
+            ApiException err = (ApiException)  exception;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            res.type("application/json");
+            res.status(err.getStatusCode());
+            res.body(gson.toJson(jsonMap));
+        });
+
+
+        after((req, res) ->{
+            res.type("application/json");
+        });
     }
 }
