@@ -102,8 +102,5 @@ public class App {
         });
 
 
-        after((req, res) ->{
-            res.type("application/json");
-        });
     }
 }

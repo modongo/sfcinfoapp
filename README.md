@@ -18,7 +18,7 @@ is already entered the app will throw an error indicating that the there is alre
  ## API Technical Documentation / Specifications
 | Path                                     |  Operation | Description   |
  | ---------------------------------------------- | ------ | --------- |
- | /alldepartments                         | GET  | List all departments|
+ | http://localhost:4567/alldepartments                       | GET  | List all departments|
  |/allstaff| GET| List all staff|
  
 ## Setup/Installation Requirements
