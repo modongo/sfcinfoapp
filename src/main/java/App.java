@@ -77,13 +77,19 @@ public class App {
         post("api/add-staff", "application/json", (req, res) -> {
             Staff newStaff = gson.fromJson(req.body(), Staff.class);
             if(newStaff.getEkno() != null){
-                if(staffDao.newStaff.getEkno()){}
+//                if(staffDao.newStaff.getEkno()){}
                 throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists! ",newStaff.getEkno()));
             }else
             staffDao.add(newStaff);
             res.status(201);
             return gson.toJson(newStaff);
         });
+
+        get("api/list-news", "application/json", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(newsDao.getAll());
+        });
+
 
         post("api/add-news", "application/json", (req, res) -> {
             News newItem = gson.fromJson(req.body(), News.class);
