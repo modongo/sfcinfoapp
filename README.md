@@ -14,12 +14,12 @@ This web app REST API for querying and retrieving scoped news and information.
  |Displaying the records| click on home page  |  all the sections will be displayed as a link for more information|
 
  ## API Technical Documentation / Specifications
-| Path                                     |  Operation | Description   |
- | ---------------------------------------------- | ------ | --------- |
- | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments|
- |https://sfcinfoapp.herokuapp.com/api/list-staff| GET| List all staff|
- | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    
-  | https://sfcinfoapp.herokuapp.com/api/api/add-news |POST| Add News|    
+| Path                                     |  Operation | Description   |Request Format|
+ | ---------------------------------------------- | ------ | --------- |---------------|
+ | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments||
+ |https://sfcinfoapp.herokuapp.com/api/list-staff| GET| List all staff||
+ | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    { "deptname": "NSO", "description": "NSO department"  }|    
+  | https://sfcinfoapp.herokuapp.com/api/api/add-news |POST| Add News|    |
 
  
 ## Setup/Installation Requirements
@@ -52,7 +52,7 @@ currently there a bug affecting addition of staff and departments.
 
 ## live link:
 
-$< https://saftechteams.herokuapp.com >
+$< https://sfcinfoapp.herokuapp.com/ >
 
 # clone into repository
 

@@ -77,6 +77,7 @@ public class App {
         post("api/add-staff", "application/json", (req, res) -> {
             Staff newStaff = gson.fromJson(req.body(), Staff.class);
             if(newStaff.getEkno() != null){
+                if(staffDao.newStaff.getEkno()){}
                 throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists! ",newStaff.getEkno()));
             }else
             staffDao.add(newStaff);
