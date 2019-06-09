@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,12 +8,42 @@ public class News {
 
     private int id;
     private String newsitems;
-    private int deptid;
-    private LocalDateTime createdAt;
+    private int newscategoryid;
+    private Timestamp createdate;
+    private String newstitle;
 
-    public News(String newsitems, int deptid) {
+    public int getNewscategoryid() {
+        return newscategoryid;
+    }
+
+    public void setNewscategoryid(int newscategoryid) {
+        this.newscategoryid = newscategoryid;
+    }
+
+    public Timestamp getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Timestamp createdate) {
+        this.createdate = createdate;
+    }
+
+
+
+    public String getNewstitle() {
+        return newstitle;
+    }
+
+    public void setNewstitle(String newstitle) {
+        this.newstitle = newstitle;
+    }
+
+    public News(String newsitems, int newscategoryid, String newstitle) {
         this.newsitems = newsitems;
-        this.deptid = deptid;
+        this.newscategoryid = newscategoryid;
+        this.id = id;
+        this.createdate = createdate;
+        this.newstitle = newstitle;
     }
 
     public int getId() {
@@ -32,19 +63,19 @@ public class News {
     }
 
     public int getDeptid() {
-        return deptid;
+        return newscategoryid;
     }
 
-    public void setDeptid(int deptid) {
-        this.deptid = deptid;
+    public void setDeptid(int newscategoryid) {
+        this.newscategoryid = newscategoryid;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreatedAt() {
+        return createdate;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdate = createdAt;
     }
 
     @Override

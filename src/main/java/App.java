@@ -93,8 +93,9 @@ public class App {
 
         post("api/add-news", "application/json", (req, res) -> {
             News newItem = gson.fromJson(req.body(), News.class);
-            if(newItem.getNewsitems() != null){
-                throw new ApiException(801,String.format("Error, News item:\"%s\"  already exists!",newItem.getNewsitems()));
+            if(newItem.getNewsitems() == null){
+//                if(newsDao.)
+                throw new ApiException(801,String.format("Error, News item:\"%s\"  is empty!",newItem.getNewsitems()));
             }else
             newsDao.add(newItem);
             res.status(201);

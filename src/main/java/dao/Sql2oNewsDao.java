@@ -19,7 +19,10 @@ public class Sql2oNewsDao implements NewsDao{
     @Override
     //deptid | newsitems | createdate
     public void add(News news) {
-        String sql = "INSERT INTO news (newscategoryid, newsitems,newstitle) VALUES (:newscategoryid, :newsitems,:newstitle)"; //raw sql
+//            public News(String newsitems, int newscategoryid, String newstitle) {
+//    public News(String newsitems, int newscategoryid, String newstitle) {
+
+            String sql = "INSERT INTO news ( newsitems,newscategoryid,newstitle) VALUES ( :newsitems,:newscategoryid,:newstitle)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             con.createQuery(sql) //make a new variable
                     .bind(news)
@@ -33,7 +36,7 @@ public class Sql2oNewsDao implements NewsDao{
     @Override
     public List<News> getAll() {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM news where newscategoryid=0 or newscatergoryid=:newscategoryid") //raw sql
+            return con.createQuery("SELECT * FROM news ") //raw sql
                     .executeAndFetch(News.class); //fetch a list
         }
     }
