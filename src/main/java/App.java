@@ -2,17 +2,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.Sql2oNewsDao;
+import dao.*;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import com.google.gson.Gson;
 
 
-
-import dao.DB;
-import dao.Sql2oDepartmentDao;
-import dao.Sql2oStaffDao;
 import models.Department;
 import exceptions.ApiException;
 import models.News;
@@ -93,6 +89,23 @@ public class App {
             res.status(201);
             return gson.toJson(newItem);
         });
+
+        get("/api/departments/:id/news", "application/json", (req, res) -> {
+            int departmentid = Integer.parseInt(req.params("id"));
+
+            Department departmentToFInd = departmentDao.findById(departmentid);
+            List<News> allNews;
+
+            if (departmentToFInd == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+            }
+
+            allNews = newsDao.getAllNewssByDepartment(departmentid);
+
+            return gson.toJson(allNews);
+        });
+
+
         //FILTERS
         exception(ApiException.class, (exception, req, res) -> {
             ApiException err = (ApiException)  exception;
@@ -103,6 +116,7 @@ public class App {
             res.status(err.getStatusCode());
             res.body(gson.toJson(jsonMap));
         });
+
 
 
     }

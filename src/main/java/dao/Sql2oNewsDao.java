@@ -42,14 +42,7 @@ public class Sql2oNewsDao implements NewsDao{
     }
 
 
-    @Override
-    public News findById(int id) {
-        try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM staff WHERE id = :id")
-                    .addParameter("id", id) //key/value pair, key must match above
-                    .executeAndFetchFirst(News.class); //fetch an individual item
-        }
-    }
+
 
     @Override
     //deptid | newsitems | createdate
@@ -89,7 +82,12 @@ public class Sql2oNewsDao implements NewsDao{
         }
     }
     @Override
-    public void getAllNewssByDepartment(int departmentId){
+    public List<News> getAllNewssByDepartment(int newscategoryid){
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT * FROM news WHERE newscategoryid = :newscategoryid")
+                    .addParameter("newscategoryid", newscategoryid)
+                    .executeAndFetch(News.class);
+        }
 
     }
 }

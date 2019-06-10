@@ -14,8 +14,7 @@ public interface NewsDao {
     void add(News news); //****
 
     //READ
-    News findById(int id);
-    void getAllNewssByDepartment(int departmentId);
+    List getAllNewssByDepartment(int departmentId);
 
     //UPDATE
     //deptid | newsitems | createdate

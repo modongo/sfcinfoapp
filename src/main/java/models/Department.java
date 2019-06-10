@@ -11,6 +11,7 @@ public class Department {
     public Department(String deptname, String description) {
         this.deptname = deptname;
         this.description = description;
+        this.id = id;
     }
 
     public int getId() {
