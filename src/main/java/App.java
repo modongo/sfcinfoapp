@@ -27,7 +27,7 @@ public class App {
         // This tells our app that if Heroku sets a port for us, we need to use that port.
         // Otherwise, if they do not, continue using port 4567.
 
-        if (process.environment().get("PORT") == null) {
+        if (process.environment().get("PORT") != null) {
             port = Integer.parseInt(process.environment().get("PORT"));
         } else {
             port = 4567;
@@ -54,49 +54,41 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("api/list-departments", "application/json", (req, res) -> {
+        get("/api/list-departments", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(departmentDao.getAll());
         });
 
-        get("api/list-staff", "application/json", (req, res) -> {
+        get("/api/list-staff", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(staffDao.getAll());
         });
 
-        post("api/add-department", "application/json", (req, res) -> {
+        post("/api/add-department", "application/json", (req, res) -> {
             Department newDept = gson.fromJson(req.body(), Department.class);
 
-            if(newDept.getDeptname() == null){
-                throw new ApiException(801, String.format("Error, Department:\"%s\"  already exists!", newDept.getDeptname()));
-            } else
+
                 departmentDao.add(newDept);
                 res.status(201);
                 return gson.toJson(newDept);
         });
-        post("api/add-staff", "application/json", (req, res) -> {
+        post("/api/add-staff", "application/json", (req, res) -> {
             Staff newStaff = gson.fromJson(req.body(), Staff.class);
-            if(newStaff.getEkno() == null){
-//                if(staffDao.newStaff.getEkno()){}
-                throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists! ",newStaff.getEkno()));
-            }else
+
             staffDao.add(newStaff);
             res.status(201);
             return gson.toJson(newStaff);
         });
 
-        get("api/list-news", "application/json", (req, res) -> {
+        get("/api/list-news", "application/json", (req, res) -> {
             res.type("application/json");
             return gson.toJson(newsDao.getAll());
         });
 
 
-        post("api/add-news", "application/json", (req, res) -> {
+        post("/api/add-news", "application/json", (req, res) -> {
             News newItem = gson.fromJson(req.body(), News.class);
-            if(newItem.getNewsitems() == null){
-//                if(newsDao.)
-                throw new ApiException(801,String.format("Error, News item:\"%s\"  is empty!",newItem.getNewsitems()));
-            }else
+
             newsDao.add(newItem);
             res.status(201);
             return gson.toJson(newItem);
