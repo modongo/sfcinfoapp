@@ -90,7 +90,7 @@ public class App {
             return gson.toJson(newItem);
         });
 
-        get("/api/departments/:id/news", "application/json", (req, res) -> {
+        get("/api/list-departments/:id/news", "application/json", (req, res) -> {
             int departmentid = Integer.parseInt(req.params("id"));
 
             Department departmentToFInd = departmentDao.findById(departmentid);
@@ -103,6 +103,16 @@ public class App {
             allNews = newsDao.getAllNewssByDepartment(departmentid);
 
             return gson.toJson(allNews);
+        });
+
+        post("/api/add-departments/:id/news", "application/json", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("id"));
+            News news = gson.fromJson(req.body(), News.class);
+
+            news.setNewscategoryid(departmentId);
+            newsDao.add(news);
+            res.status(201);
+            return gson.toJson(news);
         });
 
 
