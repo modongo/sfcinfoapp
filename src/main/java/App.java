@@ -27,7 +27,7 @@ public class App {
         // This tells our app that if Heroku sets a port for us, we need to use that port.
         // Otherwise, if they do not, continue using port 4567.
 
-        if (process.environment().get("PORT") != null) {
+        if (process.environment().get("PORT") == null) {
             port = Integer.parseInt(process.environment().get("PORT"));
         } else {
             port = 4567;
@@ -67,7 +67,7 @@ public class App {
         post("api/add-department", "application/json", (req, res) -> {
             Department newDept = gson.fromJson(req.body(), Department.class);
 
-            if(newDept.getDeptname() != null){
+            if(newDept.getDeptname() == null){
                 throw new ApiException(801, String.format("Error, Department:\"%s\"  already exists!", newDept.getDeptname()));
             } else
                 departmentDao.add(newDept);
@@ -76,7 +76,7 @@ public class App {
         });
         post("api/add-staff", "application/json", (req, res) -> {
             Staff newStaff = gson.fromJson(req.body(), Staff.class);
-            if(newStaff.getEkno() != null){
+            if(newStaff.getEkno() == null){
 //                if(staffDao.newStaff.getEkno()){}
                 throw new ApiException(801,String.format("Error, Department:\"%s\"  already exists! ",newStaff.getEkno()));
             }else
