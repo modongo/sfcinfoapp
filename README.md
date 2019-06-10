@@ -67,7 +67,7 @@ $ git clone  https://github.com/modongo/saftechteam.git
 
 Incase of any issues or feedback please add using any of below links.
 
-* [Issues]( https://github.com/modongo/saftechteam.issues). To submit any issues.
+* [Issues]( https://github.com/modongo/sfcinfoapp.issues). To submit any issues.
 
 * [email](mikodongo@gmail.com) for any other feedback.
 
