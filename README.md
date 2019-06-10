@@ -60,7 +60,7 @@ $< https://sfcinfoapp.herokuapp.com/ >
 
 # clone into repository
 
-$ git clone  https://github.com/modongo/saftechteam.git
+$ git clone  https://github.com/modongo/sfcinfoapp.git
 ### Open using your favorite editor and view the code or just open the index.html on the browser
 
 ## Feedback
