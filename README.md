@@ -17,11 +17,13 @@ This web app REST API for querying and retrieving scoped news and information.
 | Path                                     |  Operation | Description   |Request Format|
  | ---------------------------------------------- | ------ | --------- |---------------|
  | https://sfcinfoapp.herokuapp.com/api/list-departments| GET  | List all departments||
+ |https://sfcinfoapp.herokuapp.com/api/list-news|GET|List available news||
  |https://sfcinfoapp.herokuapp.com/api/list-staff| GET| List all staff||
  | https://sfcinfoapp.herokuapp.com/api/api/add-department |POST| Add department|    { "deptname": "NSO", "description": "NSO department"  }|    
   | https://sfcinfoapp.herokuapp.com/api/api/add-news |POST| Add News|    { "newsitems": "Hello time","newscategoryid": 0,"newstitle": "Hello newstitle" }
 
    |
+   
 
  
 ## Setup/Installation Requirements
