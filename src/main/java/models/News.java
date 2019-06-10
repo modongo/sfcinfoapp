@@ -9,7 +9,6 @@ public class News {
     private int id;
     private String newsitems;
     private int newscategoryid;
-    private Timestamp createdate;
     private String newstitle;
 
     public int getNewscategoryid() {
@@ -20,13 +19,7 @@ public class News {
         this.newscategoryid = newscategoryid;
     }
 
-    public Timestamp getCreatedate() {
-        return createdate;
-    }
 
-    public void setCreatedate(Timestamp createdate) {
-        this.createdate = createdate;
-    }
 
 
 
@@ -42,7 +35,6 @@ public class News {
         this.newsitems = newsitems;
         this.newscategoryid = newscategoryid;
         this.id = id;
-        this.createdate = createdate;
         this.newstitle = newstitle;
     }
 
@@ -70,13 +62,8 @@ public class News {
         this.newscategoryid = newscategoryid;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdate;
-    }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdate = createdAt;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -85,12 +72,11 @@ public class News {
         News news = (News) o;
         return getId() == news.getId() &&
                 getDeptid() == news.getDeptid() &&
-                getNewsitems().equals(news.getNewsitems()) &&
-                getCreatedAt().equals(news.getCreatedAt());
+                getNewsitems().equals(news.getNewsitems());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNewsitems(), getDeptid(), getCreatedAt());
+        return Objects.hash(getId(), getNewsitems(), getDeptid());
     }
 }
